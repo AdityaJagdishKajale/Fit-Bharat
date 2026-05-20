@@ -2,6 +2,8 @@
 
 A modern MERN stack wellness application that helps users track their daily nutrition and fitness goals. Track calories, macronutrients, and wellness metrics with barcode scanning and smart food search.
 
+FitBharat is built for quick everyday meal logging. Users can register, search foods, scan packaged product barcodes, save meals by type, and review daily totals from a clean React dashboard backed by an Express and MongoDB API.
+
 ## Features
 - 🔐 Secure JWT authentication
 - 📱 Barcode scanning with Open Food Facts API
@@ -14,8 +16,17 @@ A modern MERN stack wellness application that helps users track their daily nutr
 ## Project Structure
 - `backend/` - Express.js API with MongoDB integration
 - `frontend/` - Modern React UI with Vite bundler
+- `backend/services/` - Food lookup and nutrition data helpers
+- `frontend/src/pages/` - App screens for dashboard, search, scanner, history, auth, and profile
 
 ## Environment Setup
+
+Copy the example environment files before running the app:
+
+```bash
+copy backend\.env.example backend\.env
+copy frontend\.env.example frontend\.env
+```
 
 ### `backend/.env`
 ```
@@ -36,21 +47,25 @@ VITE_API_URL=http://localhost:5000
 ```bash
 # Install all dependencies
 npm install
-cd backend && npm install
-cd ../frontend && npm install
 ```
 
 **Start Backend API:**
 ```bash
-cd backend && npm run dev
+npm run dev:backend
 ```
 
 **Start Frontend (in another terminal):**
 ```bash
-cd frontend && npm run dev
+npm run dev:frontend
 ```
 
 The app will be available at `http://localhost:5173`
+
+## Development Notes
+- Keep `.env` files local. They are ignored by Git.
+- The frontend proxies API requests to `http://localhost:5000` during development.
+- Food search uses USDA FoodData Central when an API key is configured.
+- Barcode lookup uses Open Food Facts data for packaged foods.
 
 ## API Endpoints
 - `POST /api/auth/register` - Create new account
